@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="uk"><head>
+  <meta charset="utf-8"/><title>Рядок2: Границя Слейтера</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>body{margin:0;padding:0;font-family:system-ui,Segoe UI,Arial}</style>
+</head><body>
+  <div id="chart" style="width:960px;height:720px;margin:24px auto;"></div>
+  <script>
+    const jx  = [6,5,6,3,2.0943903694134214,8,7,5,7,4,4,8,6,9,1.9200506091388287,5,5,5,7,6];
+    const jy  = [8,6,0,3,2.9177100534199916,6,1,8,7,0,5,1,1,0,3.0754280612200553,0,1,4,5,4];
+    const labs= ["A21","A22","A23","A24","A25","A26","A27","A28","A29","A30","A31","A32","A33","A34","A35","A36","A37","A38","A39","A40"];
+    const mask= [true,false,false,false,false,true,false,true,true,false,false,true,false,true,false,false,false,false,false,false];
+    const custom = [[6,8],[5,6],[6,0],[3,3],[2,3],[8,6],[7,1],[5,8],[7,7],[4,0],[4,5],[8,1],[6,1],[9,0],[2,3],[5,0],[5,1],[5,4],[7,5],[6,4]];
+    const lineX = [5,6,7,8,8,9];
+    const lineY = [8,8,7,6,1,0];
+    const labelMode = "front";
+
+    const allTrace = {
+      x: jx, y: jy,
+      mode: (labelMode === 'all') ? 'markers+text' : 'markers',
+      text: labs,
+      textposition: 'top left',
+      textfont: { size: 10 },
+      marker: { size: 7, opacity: 0.8, line: { width: 0.5 } },
+      name: 'Усі альтернативи',
+      hovertemplate: '<b>%{text}</b><br>Q1=%{customdata[0]}<br>Q2=%{customdata[1]}<extra></extra>',
+      customdata: custom,
+      cliponaxis: false
+    };
+
+    const frontTrace = {
+      x: jx.filter((_,i)=>mask[i]),
+      y: jy.filter((_,i)=>mask[i]),
+      text: labs.filter((_,i)=>mask[i]),
+      textposition: 'top center',
+      textfont: { size: 12 },
+      mode: (labelMode === 'none') ? 'markers' : 'markers+text',
+      marker: { size: 11, symbol: 'diamond', opacity: 0.95, line: { width: 1 } },
+      name: 'Фронт',
+      hovertemplate: '<b>%{text}</b><br>Q1=%{customdata[0]}<br>Q2=%{customdata[1]}<extra></extra>',
+      customdata: custom.filter((_,i)=>mask[i]),
+      cliponaxis: false
+    };
+
+    const lineTrace = (lineX.length > 0) ? {
+      x: lineX, y: lineY,
+      mode: 'lines',
+      line: { width: 2, shape: "linear" },
+      name: 'Лінія фронту'
+    } : null;
+
+    const traces = lineTrace ? [allTrace, frontTrace, lineTrace] : [allTrace, frontTrace];
+
+    Plotly.newPlot('chart', traces, {
+      title: "Рядок2: Границя Слейтера",
+      hovermode: 'closest',
+      margin: {l:60, r:20, t:60, b:60},
+      xaxis: { title: 'Q1 (maximize)', rangemode: 'tozero', dtick: 1, gridcolor: 'rgba(0,0,0,0.1)' },
+      yaxis: { title: 'Q2 (maximize)', rangemode: 'tozero', dtick: 1, gridcolor: 'rgba(0,0,0,0.1)' },
+      legend: { orientation: 'h', x: 0.5, xanchor: 'center' }
+    }, {displaylogo:false});
+  </script>
+</body></html>

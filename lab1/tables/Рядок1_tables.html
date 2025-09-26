@@ -1,0 +1,58 @@
+<!doctype html><html lang="uk"><head>
+    <meta charset="utf-8"><title>Рядок1 — Таблиці 1.1 та 1.2</title>
+    
+  <style>
+    body{font-family:system-ui,Segoe UI,Arial; padding:24px}
+    h1{margin:0 0 8px}
+    h2{margin:32px 0 12px}
+    .tbl{border-collapse:collapse; width:100%; margin:8px 0 24px; table-layout:fixed}
+    .tbl caption{font-weight:600; text-align:left; margin-bottom:8px}
+    .tbl th,.tbl td{border:1px solid #999; padding:6px 8px; vertical-align:middle; word-wrap:break-word}
+    .tbl thead th{background:#eee}
+    .crit{width:160px; text-align:center; font-weight:600}
+    .alts{text-align:center; font-weight:600}
+    .muted{color:#666}
+    .pagebreak{page-break-after:always}
+  </style>
+  </head><body>
+  <h1>Рядок1 — Таблиці 1.1 та 1.2</h1>
+    <h2>Альтернативи A1–A10 (група 1)</h2>
+
+    <table class="tbl">
+      <caption>Таблиця 1.1 — Значення альтернатив в області критеріїв</caption>
+      <thead><tr><th rowspan="2" class="crit">Критерії</th><th colspan="10" class="alts">Альтернативи</th></tr><tr><th>A1</th><th>A2</th><th>A3</th><th>A4</th><th>A5</th><th>A6</th><th>A7</th><th>A8</th><th>A9</th><th>A10</th></tr></thead>
+      <tbody><tr><th>Q1</th><td>5</td><td>2</td><td>9</td><td>9</td><td>8</td><td>0</td><td>3</td><td>7</td><td>6</td><td>3</td></tr><tr><th>Q2</th><td>2</td><td>1</td><td>3</td><td>0</td><td>9</td><td>9</td><td>1</td><td>3</td><td>4</td><td>5</td></tr></tbody>
+    </table>
+
+    <table class="tbl">
+      <caption>Таблиця 1.2 — Значення альтернатив в області критеріїв</caption>
+      <thead><tr><th rowspan="2" class="crit">Критерії</th><th colspan="10" class="alts">Альтернативи</th></tr><tr><th>A1</th><th>A2</th><th>A3</th><th>A4</th><th>A5</th><th>A6</th><th>A7</th><th>A8</th><th>A9</th><th>A10</th></tr></thead>
+      <tbody>
+        <tr><th>Q1</th><td>5</td><td>2</td><td>9</td><td>9</td><td>8</td><td>0</td><td>3</td><td>7</td><td>6</td><td>3</td></tr>
+        <tr><th>Q2</th><td>2</td><td>1</td><td>3</td><td>0</td><td>9</td><td>9</td><td>1</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><th>Домінується<br>за Парето</th><td>A3, A5, A8, A9, A12, A13, A16, A18, A19, A20</td><td>A1, A3, A5, A7, A8, A9, A10, A11, A12, A13, A15, A16, A17, A18, A19, A20</td><td>A12, A16</td><td>A3, A12, A16, A20</td><td><span class='muted'>—</span></td><td>A5, A17</td><td>A1, A3, A5, A8, A9, A10, A11, A12, A13, A15, A16, A17, A18, A19, A20</td><td>A3, A5, A12, A13, A16, A20</td><td>A5, A12, A13, A16</td><td>A5, A11, A12, A13, A16, A17, A18, A19</td></tr>
+        <tr><th>Домінується<br>за Слейтером</th><td>A3, A5, A8, A9, A12, A13, A16, A20</td><td>A1, A3, A5, A8, A9, A10, A11, A12, A13, A15, A16, A17, A18, A19, A20</td><td><span class='muted'>—</span></td><td><span class='muted'>—</span></td><td><span class='muted'>—</span></td><td><span class='muted'>—</span></td><td>A1, A3, A5, A8, A9, A11, A12, A13, A16, A17, A18, A19, A20</td><td>A5, A12, A16</td><td>A5, A12, A13, A16</td><td>A5, A11, A13, A16, A17</td></tr>
+      </tbody>
+    </table>
+
+    <div class="pagebreak"></div>
+    <h2>Альтернативи A11–A20 (група 2)</h2>
+
+    <table class="tbl">
+      <caption>Таблиця 1.1 — Значення альтернатив в області критеріїв</caption>
+      <thead><tr><th rowspan="2" class="crit">Критерії</th><th colspan="10" class="alts">Альтернативи</th></tr><tr><th>A11</th><th>A12</th><th>A13</th><th>A14</th><th>A15</th><th>A16</th><th>A17</th><th>A18</th><th>A19</th><th>A20</th></tr></thead>
+      <tbody><tr><th>Q1</th><td>4</td><td>9</td><td>7</td><td>1</td><td>3</td><td>9</td><td>4</td><td>5</td><td>5</td><td>9</td></tr><tr><th>Q2</th><td>8</td><td>5</td><td>7</td><td>3</td><td>3</td><td>8</td><td>9</td><td>5</td><td>5</td><td>3</td></tr></tbody>
+    </table>
+
+    <table class="tbl">
+      <caption>Таблиця 1.2 — Значення альтернатив в області критеріїв</caption>
+      <thead><tr><th rowspan="2" class="crit">Критерії</th><th colspan="10" class="alts">Альтернативи</th></tr><tr><th>A11</th><th>A12</th><th>A13</th><th>A14</th><th>A15</th><th>A16</th><th>A17</th><th>A18</th><th>A19</th><th>A20</th></tr></thead>
+      <tbody>
+        <tr><th>Q1</th><td>4</td><td>9</td><td>7</td><td>1</td><td>3</td><td>9</td><td>4</td><td>5</td><td>5</td><td>9</td></tr>
+        <tr><th>Q2</th><td>8</td><td>5</td><td>7</td><td>3</td><td>3</td><td>8</td><td>9</td><td>5</td><td>5</td><td>3</td></tr>
+        <tr><th>Домінується<br>за Парето</th><td>A5, A16, A17</td><td>A16</td><td>A5, A16</td><td>A3, A5, A8, A9, A10, A11, A12, A13, A15, A16, A17, A18, A19, A20</td><td>A3, A5, A8, A9, A10, A11, A12, A13, A16, A17, A18, A19, A20</td><td><span class='muted'>—</span></td><td>A5</td><td>A5, A12, A13, A16</td><td>A5, A12, A13, A16</td><td>A12, A16</td></tr>
+        <tr><th>Домінується<br>за Слейтером</th><td>A5</td><td><span class='muted'>—</span></td><td>A5, A16</td><td>A5, A9, A10, A11, A12, A13, A16, A17, A18, A19</td><td>A5, A9, A11, A12, A13, A16, A17, A18, A19</td><td><span class='muted'>—</span></td><td><span class='muted'>—</span></td><td>A5, A13, A16</td><td>A5, A13, A16</td><td><span class='muted'>—</span></td></tr>
+      </tbody>
+    </table>
+
+    </body></html>

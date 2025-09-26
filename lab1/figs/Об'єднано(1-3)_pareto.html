@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="uk"><head>
+  <meta charset="utf-8"/><title>Об'єднано(1-3): Границя Парето</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>body{margin:0;padding:0;font-family:system-ui,Segoe UI,Arial}</style>
+</head><body>
+  <div id="chart" style="width:960px;height:720px;margin:24px auto;"></div>
+  <script>
+    const jx  = [5,2,8.91153239012169,9.106552663994293,8.096924826138014,0,3,7,6.091637791634811,3,4,9,7.009717222657372,1,2.943466534351859,9,4,4.902028184968795,4.979068705743025,9.019706008565093,6,4.898113620875121,6,3.0889559654194265,1.97315129327655,8,7,5,7.082019417296518,4,4,7.89417023843975,6,8.923944596209646,2.0389599666331697,5,5.094803725738864,5,7.003802808294721,5.981139537126377,4,2,5,0.9817526391968762,8.002662940667829,4,6,3,5.077765986548035,7,8,1.0714216502056975,3.1140326186451928,4,0,4.91507969091502,7.927933204760051,7.117942178345092,6,1];
+    const jy  = [2,1,3.0900215773567012,-0.09650207465246464,9.030944404909231,9,1,3,3.981946368144897,5,8,5,6.94429730040959,3,3.040640586503436,8,9,4.9941397460797825,4.956112323230554,3.0117251484173893,8,5.94836656331207,0,3.0518385443630303,2.9180092575223653,6,1,8,7.103792489334472,0,5,0.9732782643949153,1,0.0962292314427728,3.0259818969399275,0,0.9344483645659104,4,4.972927220174064,4.115226372914789,2,4,9,8.943952899919829,9.104701547188057,4,9,8,0.9575043384578392,6,3,8.889971543810047,3.1133748329698365,3,4,5.928751824605862,0.9348819149724591,5.039381484301341,6,1];
+    const labs= ["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15","A16","A17","A18","A19","A20","A21","A22","A23","A24","A25","A26","A27","A28","A29","A30","A31","A32","A33","A34","A35","A36","A37","A38","A39","A40","A41","A42","A43","A44","A45","A46","A47","A48","A49","A50","A51","A52","A53","A54","A55","A56","A57","A58","A59","A60"];
+    const mask= [false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+    const custom = [[5,2],[2,1],[9,3],[9,0],[8,9],[0,9],[3,1],[7,3],[6,4],[3,5],[4,8],[9,5],[7,7],[1,3],[3,3],[9,8],[4,9],[5,5],[5,5],[9,3],[6,8],[5,6],[6,0],[3,3],[2,3],[8,6],[7,1],[5,8],[7,7],[4,0],[4,5],[8,1],[6,1],[9,0],[2,3],[5,0],[5,1],[5,4],[7,5],[6,4],[4,2],[2,4],[5,9],[1,9],[8,9],[4,4],[6,9],[3,8],[5,1],[7,6],[8,3],[1,9],[3,3],[4,3],[0,4],[5,6],[8,1],[7,5],[6,6],[1,1]];
+    const lineX = [8,9];
+    const lineY = [9,8];
+    const labelMode = "front";
+
+    const allTrace = {
+      x: jx, y: jy,
+      mode: (labelMode === 'all') ? 'markers+text' : 'markers',
+      text: labs,
+      textposition: 'top left',
+      textfont: { size: 10 },
+      marker: { size: 7, opacity: 0.8, line: { width: 0.5 } },
+      name: 'Усі альтернативи',
+      hovertemplate: '<b>%{text}</b><br>Q1=%{customdata[0]}<br>Q2=%{customdata[1]}<extra></extra>',
+      customdata: custom,
+      cliponaxis: false
+    };
+
+    const frontTrace = {
+      x: jx.filter((_,i)=>mask[i]),
+      y: jy.filter((_,i)=>mask[i]),
+      text: labs.filter((_,i)=>mask[i]),
+      textposition: 'top center',
+      textfont: { size: 12 },
+      mode: (labelMode === 'none') ? 'markers' : 'markers+text',
+      marker: { size: 11, symbol: 'diamond', opacity: 0.95, line: { width: 1 } },
+      name: 'Фронт',
+      hovertemplate: '<b>%{text}</b><br>Q1=%{customdata[0]}<br>Q2=%{customdata[1]}<extra></extra>',
+      customdata: custom.filter((_,i)=>mask[i]),
+      cliponaxis: false
+    };
+
+    const lineTrace = (lineX.length > 0) ? {
+      x: lineX, y: lineY,
+      mode: 'lines',
+      line: { width: 2, shape: "linear" },
+      name: 'Лінія фронту'
+    } : null;
+
+    const traces = lineTrace ? [allTrace, frontTrace, lineTrace] : [allTrace, frontTrace];
+
+    Plotly.newPlot('chart', traces, {
+      title: "Об'єднано(1-3): Границя Парето",
+      hovermode: 'closest',
+      margin: {l:60, r:20, t:60, b:60},
+      xaxis: { title: 'Q1 (maximize)', rangemode: 'tozero', dtick: 1, gridcolor: 'rgba(0,0,0,0.1)' },
+      yaxis: { title: 'Q2 (maximize)', rangemode: 'tozero', dtick: 1, gridcolor: 'rgba(0,0,0,0.1)' },
+      legend: { orientation: 'h', x: 0.5, xanchor: 'center' }
+    }, {displaylogo:false});
+  </script>
+</body></html>
